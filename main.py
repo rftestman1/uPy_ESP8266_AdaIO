@@ -47,8 +47,8 @@ def cb(topic, msg):
     # free_heap = int(str(msg,'utf-8'))
 
 # WiFi connection information
-WIFI_SSID = 'NETGEAR25'
-WIFI_PASSWORD = 'slowwater161'
+WIFI_SSID = 'NETGEA***'
+WIFI_PASSWORD = 'slowwater***'
 
 # turn off the WiFi Access Point
 ap_if = network.WLAN(network.AP_IF)
@@ -82,7 +82,7 @@ mqtt_client_id = bytes('client_'+str(random_num), 'utf-8')
 #         (about 1/4 of the micropython heap on the ESP8266 platform)
 ADAFRUIT_IO_URL = b'io.adafruit.com' 
 ADAFRUIT_USERNAME = b'stormin'
-ADAFRUIT_IO_KEY = b'4a8287af16f346d6be64bb6be020d3e3'
+ADAFRUIT_IO_KEY = b'add IO Key here'
 ADAIO_PubFD_1 = b'GC_FreeMemory'
 ADAIO_SubFD_1 = b'blue-led-control'
 
