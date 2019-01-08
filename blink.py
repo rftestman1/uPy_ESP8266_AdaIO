@@ -2,15 +2,19 @@ import utime
 from machine import Pin
 
 
-def blink_led():
+# Function will blink the blue led on ESP8266
+def led_blink(n_times, t):
     led = Pin(2, Pin.OUT)
     enabled = False
-    while True:
+    x = 0
+    while x < n_times:
         if enabled:
             led.off()
-            print('Blue LED off')
+            print('LED On!')
         else:
             led.on()
-            print('Blue LED on')
-        utime.sleep_ms(2000)
+            print('LED Off!')
+        utime.sleep_ms(t)
         enabled = not enabled
+        x += 1
+
