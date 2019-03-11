@@ -1,4 +1,4 @@
-from blink import *
+from peripherals import *
 
 
 if __name__ == '__main__':
