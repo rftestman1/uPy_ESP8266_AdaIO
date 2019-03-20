@@ -26,7 +26,7 @@ def cb(topic, msg):
     # free_heap = int(str(msg,'utf-8'))
 
 
-def broker_connect(t_pub):
+def broker_connect(t_pub, tc_water):
     # create a random MQTT clientID
     random_num = int.from_bytes(os.urandom(3), 'little')
     mqtt_client_id = bytes('client_' + str(random_num), 'utf-8')
@@ -86,13 +86,13 @@ def broker_connect(t_pub):
                                bytes(str(free_heap_in_bytes), 'utf-8'),
                                qos=0)
                 # Publish water temperature in C or F
-                tc, tf = prph.tmp36()
-                print('Publish:  Water Temp = {} c'.format(tc))
+                # tc, tf = prph.tmp36()
+                print('Publish:  Water Temp = {} c'.format(tc_water))
                 client.publish(mqtt_PubFD2,
-                               bytes(str(tc), 'utf-8'),
+                               bytes(str(tc_water), 'utf-8'),
                                qos=0)
                 # Publish outdoor temperature in C
-                t2320, h2320 = prph.am2320(14)
+                t2320, h2320 = prph.am2320(4)
                 print('Publish:  Outdoor Temp = {} c'.format(t2320))
                 client.publish(mqtt_PubFD3,
                                bytes(str(t2320), 'utf-8'),

@@ -1,6 +1,3 @@
-# The MIT License (MIT)
-# Copyright (c) 2018 Mike Teachman
-# https://opensource.org/licenses/MIT
 
 import network
 import time

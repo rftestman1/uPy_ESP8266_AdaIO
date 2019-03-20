@@ -22,10 +22,9 @@ def led_blink(n_times, t):
         x += 1
 
 
-def tmp36():
-    adc = machine.ADC(0)
-    v = 942*10**-6 * adc.read()
-    tempc = 100*(2*v - 0.5)
+def tmp36(adc):
+    v = .00322 * adc
+    tempc = 100*(v - 0.5)
     tempf = (tempc * 1.8)+32
     return str(round(tempc, 1)), str(round(tempf, 1))
 
