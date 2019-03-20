@@ -8,7 +8,7 @@ class MCP3008:
         self._miso = Pin(miso, Pin.IN)
         self._cs = Pin(cs, Pin.OUT)
 
-    def read(self, channel):
+    def read_channels(self, channel):
         # """ Reads an analog value from the given channel (0-7) and returns it. """
         if channel not in range(0, 8):
             raise ValueError("channel must be 0-7")

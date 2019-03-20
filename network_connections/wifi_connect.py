@@ -1,27 +1,30 @@
-
 import network
 import time
 import sys
+from config import NETWORK_SSID
+from config import NETWORK_PASSWORD
+from config import MAX_CONNECTION_RETRY_ATTEMPTS
 
 
-def do_connect(ssid, pw):
-    # WiFi connection information
-    WIFI_SSID = ssid
-    WIFI_PASSWORD = pw
-
-    # turn off the WiFi Access Point
+def turn_off_wifi():
     ap_if = network.WLAN(network.AP_IF)
     ap_if.active(False)
 
-    # Activate WiFi network connection
+
+def turn_on_wifi():
     wifi = network.WLAN(network.STA_IF)
     wifi.active(True)
+    return wifi
+
+
+def do_connect():
+    turn_off_wifi()
+    wifi = turn_on_wifi()
 
     # wait until the device is connected to the WiFi network
-    MAX_ATTEMPTS = 20
     attempt_count = 0
-    while not wifi.isconnected() and attempt_count < MAX_ATTEMPTS:
-        wifi.connect(WIFI_SSID, WIFI_PASSWORD)
+    while not wifi.isconnected():
+        wifi.connect(NETWORK_SSID, NETWORK_PASSWORD)
         print('Trying to connect!')
         attempt_count += 1
         time.sleep(1)
@@ -31,7 +34,7 @@ def do_connect(ssid, pw):
         print('Network Config: ', wifi.ifconfig())
         return True
 
-    if attempt_count == MAX_ATTEMPTS:
+    if attempt_count == MAX_CONNECTION_RETRY_ATTEMPTS:
         print('could not connect to the WiFi network')
         return False
         sys.exit()
